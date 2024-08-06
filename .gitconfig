@@ -1,11 +1,5 @@
-[credential]
-	credentialStore = gpg
-	helper =
-	helper = /usr/local/bin/git-credential-manager
 [user]
 	name = bxoxd
 	email = 83289173+bxoxd@users.noreply.github.com
-[credential "https://dev.azure.com"]
-	useHttpPath = true
 [init]
 	defaultBranch = main
