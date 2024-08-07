@@ -19,7 +19,7 @@ function! PackInit() abort
 	"call minpac#add('altercation/vim-colors-solarized')
 	call minpac#add('vim-airline/vim-airline')
 	call minpac#add('vim-airline/vim-airline-themes')
-	call minpac#add('ryanoasis/vim-devicons')
+	"call minpac#add('ryanoasis/vim-devicons')
 	call minpac#add('scrooloose/nerdtree')
 	call minpac#add('jistr/vim-nerdtree-tabs')
 endfunction
