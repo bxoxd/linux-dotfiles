@@ -1,5 +1,12 @@
+[credential]
+	credentialStore = gpg
+	helper = /usr/local/bin/git-credential-manager
 [user]
 	name = bxoxd
 	email = 83289173+bxoxd@users.noreply.github.com
 [init]
 	defaultBranch = main
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[core]
+	editor = vim
