@@ -16,10 +16,11 @@ function! PackInit() abort
 
 	" Add plugins here.
 	call minpac#add('tpope/vim-unimpaired')
-	"call minpac#add('altercation/vim-colors-solarized')
-	call minpac#add('vim-airline/vim-airline')
-	call minpac#add('vim-airline/vim-airline-themes')
-	"call minpac#add('ryanoasis/vim-devicons')
+	call minpac#add('altercation/vim-colors-solarized')
+	"call minpac#add('vim-airline/vim-airline')
+	"call minpac#add('vim-airline/vim-airline-themes')
+	call minpac#add('itchyny/lightline.vim')
+	call minpac#add('ryanoasis/vim-devicons')
 	call minpac#add('scrooloose/nerdtree')
 	call minpac#add('jistr/vim-nerdtree-tabs')
 endfunction
@@ -29,24 +30,51 @@ command! PackUpdate call PackInit() | call minpac#update()
 command! PackClean call PackInit() | call minpac#clean()
 command! PackStatus packadd minpac | call minpac#status()
 
-" Plugin settings here.
-" vim-airline/vim-airline settings
-let g:airline_powerline_fonts=1 " Need to install a patched font. You can choose one from the nerd fonts project.
-let g:airline_detect_paset=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline_theme='violet'
+
+" ********** Plugin settings here **********
+
+" ***** altercation/vim-colors-solarized *****
+" remember to set the terminal emulator'colorscheme
+colorscheme solarized
+set background=dark
+
+" ***** vim-airline/vim-airline *****
+"let g:airline_powerline_fonts=1 " Need to install a patched font. You can choose one from the nerd fonts project.
+"let g:airline_detect_paset=1
+"let g:airline#extensions#tabline#enabled=1
+"let g:airline_theme='violet'
 " <C-r>="\Uf04f3" to insert symbols
 " use nerd fonts cheat sheet to find the hex code
 " "\U" to escape 32-bit unicode, "\u" to escape 16-bit
 " Below is the default value of g:airline_section_z
 "let g:airline_section_z='%p%%%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%v%#__restore__#'
-let g:airline_section_z='%p%%%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L %#__restore__#%#__accent_bold#:%v%#__restore__#'
+"let g:airline_section_z='%p%%%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L%#__restore__#%#__accent_bold# :%v%#__restore__#'
 
-" jistr/vim-nerdtree-tabs
+" ***** itchyny/lightline *****
+set laststatus=2
+set noshowmode
+let g:lightline = {
+	\ 'colorscheme': 'solarized', 
+	\ 'component_function': {
+	\ 	'filetype': 'MyFiletype',
+	\ 	'fileformat': 'MyFileformat',
+	\ 	}
+	\ }
+
+function! MyFiletype()
+	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+" ***** jistr/vim-nerdtree-tabs *****
 nnoremap<silent> <leader>t :NERDTreeTabsToggle<CR>
 "let g:nerdtree_tabs_open_on_console_startup=1
 
-" General settings.
+
+" ********** General settings **********
 
 if has('persistent_undo')
 	" The directory name ending in two path separators will cause the

@@ -107,12 +107,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# ---------- my own configurations ----------
+# ********** my own configurations **********
 
 export MYVIMRC=~/.vim/vimrc
 export GPG_TTY=$(tty)
 
-# ----- reset PS1 -----
+# ***** reset PS1 *****
 # generate by ezprompt.net
 # get current branch in git repo
 function parse_git_branch() {
