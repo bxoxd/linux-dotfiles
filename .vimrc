@@ -23,6 +23,7 @@ function! PackInit() abort
 	call minpac#add('ryanoasis/vim-devicons')
 	call minpac#add('scrooloose/nerdtree')
 	call minpac#add('jistr/vim-nerdtree-tabs')
+	call minpac#add('dense-analysis/ale')
 endfunction
 
 " Use the following user commands to load minpac on demand.
@@ -31,14 +32,14 @@ command! PackClean call PackInit() | call minpac#clean()
 command! PackStatus packadd minpac | call minpac#status()
 
 
-" ********** Plugin settings here **********
+" ******************** Plugin settings here ********************
 
-" ***** altercation/vim-colors-solarized *****
+" ********** altercation/vim-colors-solarized **********
 " remember to set the terminal emulator'colorscheme
 colorscheme solarized
 set background=dark
 
-" ***** vim-airline/vim-airline *****
+" ********** vim-airline/vim-airline **********
 "let g:airline_powerline_fonts=1 " Need to install a patched font. You can choose one from the nerd fonts project.
 "let g:airline_detect_paset=1
 "let g:airline#extensions#tabline#enabled=1
@@ -50,7 +51,7 @@ set background=dark
 "let g:airline_section_z='%p%%%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%v%#__restore__#'
 "let g:airline_section_z='%p%%%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L%#__restore__#%#__accent_bold# :%v%#__restore__#'
 
-" ***** itchyny/lightline *****
+" ********** itchyny/lightline **********
 set laststatus=2
 set noshowmode
 let g:lightline = {
@@ -69,12 +70,16 @@ function! MyFileformat()
 	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
-" ***** jistr/vim-nerdtree-tabs *****
+" ********** jistr/vim-nerdtree-tabs **********
 nnoremap<silent> <leader>t :NERDTreeTabsToggle<CR>
 "let g:nerdtree_tabs_open_on_console_startup=1
 
+" ********** dense-analysis/ale **********
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '!'
 
-" ********** General settings **********
+
+" ******************** General settings ********************
 
 if has('persistent_undo')
 	" The directory name ending in two path separators will cause the
@@ -100,6 +105,7 @@ if !isdirectory(&backupdir)
 	call mkdir(&backupdir, "p")
 endif
 
+set swapfile
 let &directory = expand("~/tmp/vimswap//")
 if !isdirectory(&directory)
 	call mkdir(&directory, "p")
